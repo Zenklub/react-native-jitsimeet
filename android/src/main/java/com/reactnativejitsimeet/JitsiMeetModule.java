@@ -16,8 +16,9 @@ import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableMapKeySetIterator;
 import com.facebook.react.module.annotations.ReactModule;
 
-import org.jitsi.meet.sdk.BroadcastAction;
 import org.jitsi.meet.sdk.BroadcastEvent;
+import org.jitsi.meet.sdk.BroadcastIntentHelper;
+import org.jitsi.meet.sdk.JitsiMeetActivity;
 import org.jitsi.meet.sdk.JitsiMeetConferenceOptions;
 import org.jitsi.meet.sdk.JitsiMeetUserInfo;
 
@@ -28,7 +29,12 @@ import java.net.URL;
 public class JitsiMeetModule extends ReactContextBaseJavaModule {
   public static final String NAME = "JitsiMeet";
 
-  private BroadcastReceiver onConferenceTerminatedReceiver;
+  private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+    @Override
+    public void onReceive(Context context, Intent intent) {
+      onBroadcastReceived(intent);
+    }
+  };
 
   public JitsiMeetModule(ReactApplicationContext reactContext) {
     super(reactContext);
@@ -42,8 +48,18 @@ public class JitsiMeetModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void hangUp() {
-    Intent hangUpBroadcastIntent = new Intent("org.jitsi.meet.HANG_UP");
-    LocalBroadcastManager.getInstance(getReactApplicationContext()).sendBroadcast(hangUpBroadcastIntent);
+    Intent hangupBroadcastIntent = BroadcastIntentHelper.buildHangUpIntent();
+    LocalBroadcastManager.getInstance(getReactApplicationContext()).sendBroadcast(hangupBroadcastIntent);
+  }
+
+  @Override
+  protected void finalize() throws Throwable {
+    super.finalize();
+    LocalBroadcastManager.getInstance(getReactApplicationContext()).unregisterReceiver(broadcastReceiver);
+  }
+
+  public void onDestroy() {
+    LocalBroadcastManager.getInstance(getReactApplicationContext()).unregisterReceiver(broadcastReceiver);
   }
 
   @ReactMethod
@@ -105,7 +121,7 @@ public class JitsiMeetModule extends ReactContextBaseJavaModule {
     if (options.hasKey("audioMuted")) {
       builder.setAudioMuted(options.getBoolean("audioMuted"));
     }
-    
+
     if (options.hasKey("videoMuted")) {
       builder.setVideoMuted(options.getBoolean("videoMuted"));
     }
@@ -121,9 +137,8 @@ public class JitsiMeetModule extends ReactContextBaseJavaModule {
       }
     }
 
-    JitsiMeetActivityExtended.launchExtended(getReactApplicationContext(), builder.build());
-
-    this.registerOnConferenceTerminatedListener(onConferenceTerminated);
+    JitsiMeetActivity.launch(getReactApplicationContext(), builder.build());
+    registerForBroadcastMessages();
   }
 
   @ReactMethod
@@ -131,20 +146,36 @@ public class JitsiMeetModule extends ReactContextBaseJavaModule {
     launchJitsiMeetView(options, onConferenceTerminated);
   }
 
-  private void registerOnConferenceTerminatedListener(Promise onConferenceTerminated) {
-    onConferenceTerminatedReceiver = new BroadcastReceiver() {
-      @Override
-      public void onReceive(Context context, Intent intent) {
-        BroadcastEvent event = new BroadcastEvent(intent);
+  private void registerForBroadcastMessages() {
+    IntentFilter intentFilter = new IntentFilter();
 
-        onConferenceTerminated.resolve(null);
+        /* This registers for every possible event sent from JitsiMeetSDK
+           If only some of the events are needed, the for loop can be replaced
+           with individual statements:
+           ex:  intentFilter.addAction(BroadcastEvent.Type.AUDIO_MUTED_CHANGED.getAction());
+                intentFilter.addAction(BroadcastEvent.Type.CONFERENCE_TERMINATED.getAction());
+                ... other events
+         */
+    for (BroadcastEvent.Type type : BroadcastEvent.Type.values()) {
+      intentFilter.addAction(type.getAction());
+    }
 
-        LocalBroadcastManager.getInstance(getReactApplicationContext()).unregisterReceiver(onConferenceTerminatedReceiver);
+    LocalBroadcastManager.getInstance(getReactApplicationContext()).registerReceiver(broadcastReceiver, intentFilter);
+  }
+
+  // Example for handling different JitsiMeetSDK events
+  private void onBroadcastReceived(Intent intent) {
+    if (intent != null) {
+      BroadcastEvent event = new BroadcastEvent(intent);
+
+      switch (event.getType()) {
+        case CONFERENCE_JOINED:
+//          Timber.i("Conference Joined with url%s", event.getData().get("url"));
+          break;
+        case PARTICIPANT_JOINED:
+//          Timber.i("Participant joined%s", event.getData().get("name"));
+          break;
       }
-    };
-
-    IntentFilter intentFilter = new IntentFilter(BroadcastEvent.Type.CONFERENCE_TERMINATED.getAction());
-
-    LocalBroadcastManager.getInstance(getReactApplicationContext()).registerReceiver(this.onConferenceTerminatedReceiver, intentFilter);
+    }
   }
 }

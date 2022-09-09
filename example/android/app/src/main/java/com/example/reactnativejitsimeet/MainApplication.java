@@ -1,6 +1,8 @@
 package com.example.reactnativejitsimeet;
 
 import androidx.annotation.Nullable;
+
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
@@ -11,9 +13,13 @@ import com.facebook.react.ReactInstanceManager;
 import com.facebook.soloader.SoLoader;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+
+import com.reactnativejitsimeet.JitsiMeetActivityManager;
 import com.reactnativejitsimeet.JitsiMeetPackage;
 
 public class MainApplication extends Application implements ReactApplication {
+
+  public JitsiMeetActivityManager activityManager;
 
   private final ReactNativeHost mReactNativeHost =
       new ReactNativeHost(this) {
@@ -53,7 +59,10 @@ public class MainApplication extends Application implements ReactApplication {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager()); // Remove this line if you don't want Flipper enabled
+    this.activityManager = new JitsiMeetActivityManager(this);
   }
+
+
 
   /**
    * Loads Flipper in React Native templates.
@@ -62,24 +71,28 @@ public class MainApplication extends Application implements ReactApplication {
    */
   private static void initializeFlipper(Context context, ReactInstanceManager reactInstanceManager) {
     if (BuildConfig.DEBUG) {
-      try {
-        /*
-         We use reflection here to pick up the class that initializes Flipper,
-        since Flipper library is not available in release mode
-        */
-        Class<?> aClass = Class.forName("com.reactnativejitsimeetExample.ReactNativeFlipper");
-        aClass
-            .getMethod("initializeFlipper", Context.class, ReactInstanceManager.class)
-            .invoke(null, context, reactInstanceManager);
-      } catch (ClassNotFoundException e) {
-        e.printStackTrace();
-      } catch (NoSuchMethodException e) {
-        e.printStackTrace();
-      } catch (IllegalAccessException e) {
-        e.printStackTrace();
-      } catch (InvocationTargetException e) {
-        e.printStackTrace();
-      }
+//      try {
+//        /*
+//         We use reflection here to pick up the class that initializes Flipper,
+//        since Flipper library is not available in release mode
+//        */
+//        Class<?> aClass = Class.forName("com.reactnativejitsimeetExample.ReactNativeFlipper");
+//        aClass
+//            .getMethod("initializeFlipper", Context.class, ReactInstanceManager.class)
+//            .invoke(null, context, reactInstanceManager);
+//      } catch (ClassNotFoundException e) {
+//        e.printStackTrace();
+//      } catch (NoSuchMethodException e) {
+//        e.printStackTrace();
+//      } catch (IllegalAccessException e) {
+//        e.printStackTrace();
+//      } catch (InvocationTargetException e) {
+//        e.printStackTrace();
+//      }
     }
+  }
+
+  public Activity getCurrentActivity() {
+    return activityManager.getCurrentActivity();
   }
 }

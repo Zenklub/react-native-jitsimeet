@@ -21,7 +21,7 @@ class JitsiMeet: NSObject {
                 
       rootViewController.pushViewController(_vc, animated: false)
         
-        self.vc = _vc
+      self.vc = _vc
     }
   }
 

@@ -6,7 +6,7 @@ buildscript {
         }
 
         dependencies {
-            classpath 'com.android.tools.build:gradle:4.0.1'
+            classpath 'com.android.tools.build:gradle:4.2.2'
         }
     }
 }
@@ -18,11 +18,11 @@ def safeExtGet(prop, fallback) {
 }
 
 android {
-    compileSdkVersion safeExtGet('JitsiMeet_compileSdkVersion', 29)
-    buildToolsVersion safeExtGet('JitsiMeet_buildToolsVersion', '29.0.2')
+    compileSdkVersion safeExtGet('JitsiMeet_compileSdkVersion', 31)
+    buildToolsVersion safeExtGet('JitsiMeet_buildToolsVersion', '30.0.3')
     defaultConfig {
         minSdkVersion safeExtGet('JitsiMeet_minSdkVersion', 24)
-        targetSdkVersion safeExtGet('JitsiMeet_targetSdkVersion', 29)
+        targetSdkVersion safeExtGet('JitsiMeet_targetSdkVersion', 30)
         versionCode 1
         versionName "1.0"
 
@@ -55,8 +55,7 @@ repositories {
 dependencies {
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
-
-    implementation ('org.jitsi.react:jitsi-meet-sdk:5.0.2') {
+    implementation ('org.jitsi.react:jitsi-meet-sdk:6.1.0') {
         transitive = true
     }
 }

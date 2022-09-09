@@ -14,6 +14,7 @@ class RNJitsiMeetView: JitsiMeetView {
   @objc var onConferenceTerminated: RCTDirectEventBlock?
   @objc var onConferenceJoined: RCTDirectEventBlock?
   @objc var onConferenceWillJoin: RCTDirectEventBlock?
+  @objc var onEnteredPip: RCTDirectEventBlock?
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -55,4 +56,13 @@ extension RNJitsiMeetView: JitsiMeetViewDelegate {
   func conferenceWillJoin(_ data: [AnyHashable : Any]!) {
     onConferenceWillJoin?(data)
   }
+
+//  func enterPictureInPicture(_ data: [AnyHashable : Any]!) {
+//    onEnteredPip?(data)
+//  }
+}
+
+extension RNJitsiMeetView {
+  // This is needed to avoid the React Native view behind it, to be hit by touch events.=
+  open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {}
 }

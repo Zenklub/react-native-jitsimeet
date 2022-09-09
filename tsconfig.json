@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@bortolilucas/react-native-jitsimeet": ["./src/index"]
+      "@zenklub/react-native-jitsimeet": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

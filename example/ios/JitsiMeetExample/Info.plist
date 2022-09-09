@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>NSMicrophoneUsageDescription</key>
-	<string></string>
+	<string>Participate in conferences with audio.</string>
 	<key>NSCameraUsageDescription</key>
-	<string></string>
+	<string>Participate in conferences with video.</string>
 	<key>NSCalendarUsageDescription</key>
 	<string></string>
 	<key>CFBundleDevelopmentRegion</key>

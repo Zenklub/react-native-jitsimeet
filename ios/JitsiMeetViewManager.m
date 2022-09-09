@@ -5,4 +5,5 @@
   RCT_EXPORT_VIEW_PROPERTY(onConferenceTerminated, RCTDirectEventBlock)
   RCT_EXPORT_VIEW_PROPERTY(onConferenceJoined, RCTDirectEventBlock)
   RCT_EXPORT_VIEW_PROPERTY(onConferenceWillJoin, RCTDirectEventBlock)
+  RCT_EXPORT_VIEW_PROPERTY(onEnteredPip, RCTDirectEventBlock)
 @end

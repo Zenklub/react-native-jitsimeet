@@ -27,3 +27,8 @@ extension JitsiMeetViewController: JitsiMeetViewDelegate {
     }
   }
 }
+
+extension JitsiMeetViewController {
+  // This is needed to avoid the React Native view behind it, to be hit by touch events.=
+  open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {}
+}

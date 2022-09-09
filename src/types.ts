@@ -32,6 +32,7 @@ export interface JitsiMeetViewProps {
   onConferenceTerminated?: (e: JitsiMeetEvent) => void;
   onConferenceJoined?: (e: JitsiMeetEvent) => void;
   onConferenceWillJoin?: (e: JitsiMeetEvent) => void;
+  onEnteredPip?: (e: JitsiMeetEvent) => void;
 }
 
 export interface JitsiMeetType {

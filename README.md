@@ -8,11 +8,11 @@ This package is deprecated and will no longer receive any updates. I recommend c
 ## Install
 
 ```sh
-yarn add @bortolilucas/react-native-jitsimeet
+yarn add @zenklub/react-native-jitsimeet
 
 or
 
-npm i --save @bortolilucas/react-native-jitsimeet
+npm i --save @zenklub/react-native-jitsimeet
 ```
 
 ## Usage
@@ -23,7 +23,7 @@ The package can be invoked in two modes
 2. As a RN View
 
 ```jsx
-import JitsiMeet, { JitsiMeetView } from '@bortolilucas/react-native-jitsimeet';
+import JitsiMeet, { JitsiMeetView } from '@zenklub/react-native-jitsimeet';
 import React, { useState } from 'react';
 import { StyleSheet, View, Pressable, Text } from 'react-native';
 

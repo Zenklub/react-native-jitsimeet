@@ -11,10 +11,10 @@ Pod::Spec.new do |s|
   s.authors      = package["author"]
 
   s.platforms    = { :ios => "12.0" }
-  s.source       = { :git => "https://github.com/bortolilucas/react-native-jitsimeet.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/Zenklub/react-native-jitsimeet.git", :tag => "#{s.version}" }
 
   s.source_files = "ios/**/*.{h,m,mm,swift}"
 
   s.dependency "React-Core"
-  s.dependency 'JitsiMeetSDK', '5.0.2'
+  s.dependency 'JitsiMeetSDK', '6.1.0'
 end

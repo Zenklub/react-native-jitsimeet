@@ -1,5 +1,5 @@
 {
-  "name": "react-native-jitsimeet-example",
+  "name": "@zenklub/react-native-jitsimeet-example",
   "description": "Example app for react-native-jitsimeet",
   "version": "0.0.1",
   "private": true,
@@ -9,14 +9,15 @@
     "start": "react-native start"
   },
   "dependencies": {
-    "react": "16.13.1",
-    "react-native": "0.63.4"
+    "react": "17.0.2",
+    "react-native": "0.68.1",
+    "eventemitter3": "^4.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.10",
+    "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.12.5",
-    "@types/react-native": "^0.65.1",
-    "babel-plugin-module-resolver": "^4.0.0",
-    "metro-react-native-babel-preset": "^0.64.0"
+    "@types/react-native": "^0.63.57",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "metro-react-native-babel-preset": "^0.66.2"
   }
 }

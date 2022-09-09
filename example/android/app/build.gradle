@@ -205,6 +205,8 @@ dependencies {
         implementation jscFlavor
     }
 
+  implementation ('org.jitsi.react:jitsi-meet-sdk:6.0.0');
+
     implementation project(':reactnativejitsimeet')
 }
 
