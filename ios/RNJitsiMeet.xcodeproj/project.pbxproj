@@ -7,12 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5308F2392703F0FB006F12AE /* JitsiMeetViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5308F2382703F0FB006F12AE /* JitsiMeetViewManager.m */; };
-		5308F23B2703F135006F12AE /* RNJitsiMeetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5308F23A2703F135006F12AE /* RNJitsiMeetView.swift */; };
-		5308F23D2703F195006F12AE /* JitsiMeetUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5308F23C2703F195006F12AE /* JitsiMeetUtil.swift */; };
-		534BC7C627035337006D1318 /* JitsiMeetViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534BC7C527035337006D1318 /* JitsiMeetViewManager.swift */; };
-		53C770F726EEE44100E6E9A4 /* JitsiMeetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C770F626EEE44100E6E9A4 /* JitsiMeetViewController.swift */; };
-		F4FF95D7245B92E800C19C63 /* JitsiMeet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF95D6245B92E800C19C63 /* JitsiMeet.swift */; };
+		A7412B1D28D25F3800CB6C8E /* RNJitsiMeetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7412B1628D25F3800CB6C8E /* RNJitsiMeetViewController.swift */; };
+		A7412B1E28D25F3800CB6C8E /* RNJitsiMeet.m in Sources */ = {isa = PBXBuildFile; fileRef = A7412B1728D25F3800CB6C8E /* RNJitsiMeet.m */; };
+		A7412B1F28D25F3800CB6C8E /* RNJitsiMeet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7412B1828D25F3800CB6C8E /* RNJitsiMeet.swift */; };
+		A7412B2128D25F3800CB6C8E /* RNJitsiMeetUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7412B1B28D25F3800CB6C8E /* RNJitsiMeetUtil.swift */; };
+		A776069128D3B94C009D5779 /* EventEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A776069028D3B94C009D5779 /* EventEmitter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,15 +27,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		134814201AA4EA6300B7C361 /* libJitsiMeet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJitsiMeet.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		5308F2382703F0FB006F12AE /* JitsiMeetViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JitsiMeetViewManager.m; sourceTree = "<group>"; };
-		5308F23A2703F135006F12AE /* RNJitsiMeetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNJitsiMeetView.swift; sourceTree = "<group>"; };
-		5308F23C2703F195006F12AE /* JitsiMeetUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JitsiMeetUtil.swift; sourceTree = "<group>"; };
-		534BC7C527035337006D1318 /* JitsiMeetViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JitsiMeetViewManager.swift; sourceTree = "<group>"; };
-		53C770F626EEE44100E6E9A4 /* JitsiMeetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JitsiMeetViewController.swift; sourceTree = "<group>"; };
-		B3E7B5891CC2AC0600A0062D /* JitsiMeet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JitsiMeet.m; sourceTree = "<group>"; };
-		F4FF95D5245B92E700C19C63 /* JitsiMeet-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JitsiMeet-Bridging-Header.h"; sourceTree = "<group>"; };
-		F4FF95D6245B92E800C19C63 /* JitsiMeet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JitsiMeet.swift; sourceTree = "<group>"; };
+		134814201AA4EA6300B7C361 /* libRNJitsiMeet.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNJitsiMeet.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7412B1628D25F3800CB6C8E /* RNJitsiMeetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNJitsiMeetViewController.swift; sourceTree = "<group>"; };
+		A7412B1728D25F3800CB6C8E /* RNJitsiMeet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNJitsiMeet.m; sourceTree = "<group>"; };
+		A7412B1828D25F3800CB6C8E /* RNJitsiMeet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNJitsiMeet.swift; sourceTree = "<group>"; };
+		A7412B1B28D25F3800CB6C8E /* RNJitsiMeetUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RNJitsiMeetUtil.swift; sourceTree = "<group>"; };
+		A7412B2528D262F500CB6C8E /* RNJitsiMeetViewController-swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RNJitsiMeetViewController-swift.h"; sourceTree = "<group>"; };
+		A7412B2628D2630400CB6C8E /* Bridging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bridging.h; sourceTree = "<group>"; };
+		A776069028D3B94C009D5779 /* EventEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventEmitter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +51,7 @@
 		134814211AA4EA7D00B7C361 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				134814201AA4EA6300B7C361 /* libJitsiMeet.a */,
+				134814201AA4EA6300B7C361 /* libRNJitsiMeet.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,14 +59,13 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
-				5308F23C2703F195006F12AE /* JitsiMeetUtil.swift */,
-				5308F23A2703F135006F12AE /* RNJitsiMeetView.swift */,
-				5308F2382703F0FB006F12AE /* JitsiMeetViewManager.m */,
-				534BC7C527035337006D1318 /* JitsiMeetViewManager.swift */,
-				53C770F626EEE44100E6E9A4 /* JitsiMeetViewController.swift */,
-				F4FF95D6245B92E800C19C63 /* JitsiMeet.swift */,
-				B3E7B5891CC2AC0600A0062D /* JitsiMeet.m */,
-				F4FF95D5245B92E700C19C63 /* JitsiMeet-Bridging-Header.h */,
+				A7412B1728D25F3800CB6C8E /* RNJitsiMeet.m */,
+				A7412B1828D25F3800CB6C8E /* RNJitsiMeet.swift */,
+				A7412B1B28D25F3800CB6C8E /* RNJitsiMeetUtil.swift */,
+				A776069028D3B94C009D5779 /* EventEmitter.swift */,
+				A7412B1628D25F3800CB6C8E /* RNJitsiMeetViewController.swift */,
+				A7412B2528D262F500CB6C8E /* RNJitsiMeetViewController-swift.h */,
+				A7412B2628D2630400CB6C8E /* Bridging.h */,
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -76,9 +73,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		58B511DA1A9E6C8500147676 /* JitsiMeet */ = {
+		58B511DA1A9E6C8500147676 /* RNJitsiMeet */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "JitsiMeet" */;
+			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RNJitsiMeet" */;
 			buildPhases = (
 				58B511D71A9E6C8500147676 /* Sources */,
 				58B511D81A9E6C8500147676 /* Frameworks */,
@@ -88,9 +85,9 @@
 			);
 			dependencies = (
 			);
-			name = JitsiMeet;
+			name = RNJitsiMeet;
 			productName = RCTDataManager;
-			productReference = 134814201AA4EA6300B7C361 /* libJitsiMeet.a */;
+			productReference = 134814201AA4EA6300B7C361 /* libRNJitsiMeet.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -107,7 +104,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "JitsiMeet" */;
+			buildConfigurationList = 58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "RNJitsiMeet" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -120,7 +117,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				58B511DA1A9E6C8500147676 /* JitsiMeet */,
+				58B511DA1A9E6C8500147676 /* RNJitsiMeet */,
 			);
 		};
 /* End PBXProject section */
@@ -130,12 +127,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				534BC7C627035337006D1318 /* JitsiMeetViewManager.swift in Sources */,
-				5308F2392703F0FB006F12AE /* JitsiMeetViewManager.m in Sources */,
-				F4FF95D7245B92E800C19C63 /* JitsiMeet.swift in Sources */,
-				5308F23D2703F195006F12AE /* JitsiMeetUtil.swift in Sources */,
-				5308F23B2703F135006F12AE /* RNJitsiMeetView.swift in Sources */,
-				53C770F726EEE44100E6E9A4 /* JitsiMeetViewController.swift in Sources */,
+				A7412B1D28D25F3800CB6C8E /* RNJitsiMeetViewController.swift in Sources */,
+				A7412B1F28D25F3800CB6C8E /* RNJitsiMeet.swift in Sources */,
+				A7412B2128D25F3800CB6C8E /* RNJitsiMeetUtil.swift in Sources */,
+				A776069128D3B94C009D5779 /* EventEmitter.swift in Sources */,
+				A7412B1E28D25F3800CB6C8E /* RNJitsiMeet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,7 +244,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = JitsiMeet;
+				PRODUCT_NAME = RNJitsiMeet;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "JitsiMeet-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -269,7 +265,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = JitsiMeet;
+				PRODUCT_NAME = RNJitsiMeet;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "JitsiMeet-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -279,7 +275,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "JitsiMeet" */ = {
+		58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "RNJitsiMeet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				58B511ED1A9E6C8500147676 /* Debug */,
@@ -288,7 +284,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "JitsiMeet" */ = {
+		58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RNJitsiMeet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				58B511F01A9E6C8500147676 /* Debug */,

@@ -1,7 +1,7 @@
 import Foundation
 import JitsiMeetSDK
 
-struct JitsiMeetUtil {
+struct RNJitsiMeetUtil {
   static func buildConferenceOptions(_ options: NSDictionary) -> JitsiMeetConferenceOptions {
     return JitsiMeetConferenceOptions.fromBuilder { (builder) in
       guard let room = options["room"] as? String else {

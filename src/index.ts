@@ -1,11 +1,49 @@
-import { NativeModules, requireNativeComponent } from 'react-native';
-import type { JitsiMeetType, JitsiMeetViewType } from './types';
+import {
+  DeviceEventEmitter,
+  NativeEventEmitter,
+  NativeModules,
+  Platform,
+} from 'react-native';
+import type { JitsiMeetType, JitsiMeetEventType } from './types';
 
-const { JitsiMeet } = NativeModules;
+const { RNJitsiMeet } = NativeModules;
 
-const JitsiMeetView: JitsiMeetViewType =
-  requireNativeComponent('JitsiMeetView');
+const eventEmitter = Platform.select({
+  ios: new NativeEventEmitter(RNJitsiMeet),
+  android: DeviceEventEmitter,
+});
 
-export { JitsiMeetView };
+export default RNJitsiMeet as JitsiMeetType;
 
-export default JitsiMeet as JitsiMeetType;
+type EventListener = (event: JitsiMeetEventType) => void;
+
+class JitsiMeetEventListener {
+  private listeners: EventListener[] = [];
+
+  constructor() {
+    eventEmitter?.addListener("onJitsiMeetConference", this.onEventHandler);
+  }
+
+  private onEventHandler = (event: JitsiMeetEventType) => {
+    this.listeners.forEach((listener) => {
+      listener(event);
+    })
+  }
+
+  addEventListener(listener: EventListener) {
+    // Prevent duplication
+    this.removeEventListener(listener);
+
+    this.listeners.push(listener)
+
+    return () => {
+      this.removeEventListener(listener);
+    }
+  }
+
+  removeEventListener(listener: EventListener) {
+    this.listeners = this.listeners.filter((listnr) => listnr !== listener);
+  }
+}
+
+export const JitsiMeetEvent = new JitsiMeetEventListener();

@@ -8,14 +8,10 @@ import android.content.IntentFilter;
 import androidx.annotation.NonNull;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import com.facebook.react.bridge.Promise;
-import com.facebook.react.bridge.ReactApplicationContext;
-import com.facebook.react.bridge.ReactContextBaseJavaModule;
-import com.facebook.react.bridge.ReactMethod;
-import com.facebook.react.bridge.ReadableMap;
-import com.facebook.react.bridge.ReadableMapKeySetIterator;
+import com.facebook.react.bridge.*;
 import com.facebook.react.module.annotations.ReactModule;
 
+import com.facebook.react.modules.core.DeviceEventManagerModule;
 import org.jitsi.meet.sdk.BroadcastEvent;
 import org.jitsi.meet.sdk.BroadcastIntentHelper;
 import org.jitsi.meet.sdk.JitsiMeetActivity;
@@ -24,10 +20,16 @@ import org.jitsi.meet.sdk.JitsiMeetUserInfo;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 @ReactModule(name = JitsiMeetModule.NAME)
 public class JitsiMeetModule extends ReactContextBaseJavaModule {
-  public static final String NAME = "JitsiMeet";
+  public static final String NAME = "RNJitsiMeet";
+
+  private ReactApplicationContext reactContext;
 
   private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
     @Override
@@ -38,6 +40,7 @@ public class JitsiMeetModule extends ReactContextBaseJavaModule {
 
   public JitsiMeetModule(ReactApplicationContext reactContext) {
     super(reactContext);
+    this.reactContext = reactContext;
   }
 
   @Override
@@ -137,7 +140,7 @@ public class JitsiMeetModule extends ReactContextBaseJavaModule {
       }
     }
 
-    JitsiMeetActivity.launch(getReactApplicationContext(), builder.build());
+    JitsiMeetActivityExtended.launchExtended(getReactApplicationContext(), builder.build());
     registerForBroadcastMessages();
   }
 
@@ -168,14 +171,74 @@ public class JitsiMeetModule extends ReactContextBaseJavaModule {
     if (intent != null) {
       BroadcastEvent event = new BroadcastEvent(intent);
 
-      switch (event.getType()) {
-        case CONFERENCE_JOINED:
-//          Timber.i("Conference Joined with url%s", event.getData().get("url"));
-          break;
-        case PARTICIPANT_JOINED:
-//          Timber.i("Participant joined%s", event.getData().get("name"));
-          break;
+      HashMap<String, Object> data = event.getData();
+      BroadcastEvent.Type type = event.getType();
+
+      String jsEventName = this.getEventNameForJs(type);
+
+      if (jsEventName == null) {
+        return;
       }
+
+      WritableMap payload = Arguments.createMap();
+
+      if (data != null) {
+        List<String> boolKeys = Arrays.asList("muted", "sharing", "isPrivate");
+        for (String key : boolKeys) {
+          if (data.containsKey(key)) {
+            payload.putBoolean(key, data.get(key).equals("true"));
+          }
+        }
+
+        List<String> stringKeys = Arrays.asList(
+          "url", "error", "participantId", "email", "name", "role", "senderId", "message", "timestamp"
+        );
+        for (String key : stringKeys) {
+          if (data.containsKey(key)) {
+            payload.putString(key, (String) data.get(key));
+          }
+        }
+      }
+
+      WritableMap params = Arguments.createMap();
+      params.putMap("data", payload);
+      params.putString("type", jsEventName);
+
+      this.reactContext
+        .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+        .emit("onJitsiMeetConference", params);
     }
+  }
+
+  private String getEventNameForJs(BroadcastEvent.Type type) {
+    switch (type) {
+      case CONFERENCE_WILL_JOIN:
+        return "conference-will-join";
+      case CONFERENCE_JOINED:
+        return "conference-joined";
+      case CONFERENCE_TERMINATED:
+        return "conference-terminated";
+      case AUDIO_MUTED_CHANGED:
+        return "audio-muted-changed";
+      case PARTICIPANT_JOINED:
+        return "participant-joined";
+      case PARTICIPANT_LEFT:
+        return "participant-left";
+      case ENDPOINT_TEXT_MESSAGE_RECEIVED:
+        return "endpoint-text-message-received";
+      case SCREEN_SHARE_TOGGLED:
+        return "screen-share-toggled";
+      case PARTICIPANTS_INFO_RETRIEVED:
+        return "participants-info-retrieved";
+      case CHAT_MESSAGE_RECEIVED:
+        return "chat-message-received";
+      case CHAT_TOGGLED:
+        return "chat-toggled";
+      case VIDEO_MUTED_CHANGED:
+        return "video-muted-changed";
+      case READY_TO_CLOSE:
+        return "ready-to-close";
+    }
+    return null;
   }
 }

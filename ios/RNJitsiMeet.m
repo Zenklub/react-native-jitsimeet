@@ -1,6 +1,8 @@
-#import "React/RCTBridgeModule.h"
+#import <Foundation/Foundation.h>
+#import <React/RCTBridgeModule.h>
+#import <React/RCTEventEmitter.h>
 
-@interface RCT_EXTERN_MODULE(JitsiMeet, NSObject)
+@interface RCT_EXTERN_MODULE(RNJitsiMeet, RCTEventEmitter)
 RCT_EXTERN_METHOD(hangUp)
 RCT_EXTERN_METHOD(launchJitsiMeetView:(NSDictionary)options
                   resolver:(RCTPromiseResolveBlock)resolve
