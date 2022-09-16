@@ -8,7 +8,7 @@
 import Foundation
 
 
-enum Events: String, CaseIterable {
+enum EventTypes: String, CaseIterable {
     case conferenceStart = "conference-start"
     case conferenceJoined = "conference-joined"
     case conferenceTerminated = "conference-terminated"
@@ -23,14 +23,16 @@ enum Events: String, CaseIterable {
     case audioMutedChanged = "audio-muted-change"
     case videoMutedChanged = "video-muted-change"
     case readyToClose = "ready-to-close"
-    
+
     static var allEvents: [String] {
-        return Events.allCases.map { $0.rawValue }
+        return EventTypes.allCases.map { $0.rawValue }
     }
 }
 
 class EventEmitter {
-    
+
+    public static let eventName = "onJitsiMeetConference"
+
     /// Shared Instance.
     public static var sharedInstance = EventEmitter()
 
@@ -44,9 +46,9 @@ class EventEmitter {
         self.eventEmitter = eventEmitter
     }
 
-    func dispatch(event: Events, body: Any?) {
+    func dispatch(event: EventTypes, body: Any?) {
         eventEmitter.sendEvent(
-            withName: "onJitsiMeetConference",
+            withName: EventEmitter.eventName,
             body: [
                 "type": event.rawValue,
                 "data": body
@@ -56,7 +58,7 @@ class EventEmitter {
 
     /// All Events which must be support by React Native.
     lazy var allEvents: [String] = {
-        return Events.allEvents
+        return [EventEmitter.eventName]
     }()
 
 }
